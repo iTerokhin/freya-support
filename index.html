@@ -3,121 +3,346 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Freya – Support</title>
+  <title>Freya — Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      background-color: #fafafa;
-      color: #222;
-      line-height: 1.6;
+    :root {
+      --bg: #2B48BC;
+      --surface: #2040b0;
+      --border: rgba(255,255,255,0.18);
+      --accent: #a8c4ff;
+      --accent-soft: rgba(168, 196, 255, 0.12);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.65);
+      --heading: #ffffff;
     }
 
-    .container {
-      max-width: 800px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 8%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 55%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 40%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 75%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 65%, rgba(255,255,255,.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 90%, rgba(255,255,255,.2) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .app-name {
+      font-family: 'Instrument Sans', sans-serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: .25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--heading);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
       margin: 0 auto;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+    /* ── Intro ── */
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
     }
 
-    h2 {
-      margin-top: 2.5rem;
-      font-size: 1.4rem;
+    /* ── Sections ── */
+    section {
+      margin-bottom: 52px;
     }
 
-    p {
-      margin: 0.5rem 0 1rem;
+    section h2 {
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: var(--heading);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
     }
 
-    a {
-      color: #4f46e5;
-      text-decoration: none;
+    p { margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Contact box ── */
+    .highlight-box {
+      background: var(--accent-soft);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 20px 0;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .email {
+    .highlight-box strong {
+      color: var(--accent);
       font-weight: 500;
     }
 
+    /* ── Link cards ── */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .2s, background .2s;
+    }
+
+    .link-card:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .link-card-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .link-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .link-card-title {
+      font-weight: 500;
+      color: var(--heading);
+      font-size: 15px;
+    }
+
+    .link-card-url {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .02em;
+      border-bottom: none;
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 500;
+      color: var(--heading);
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: background .2s;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      color: var(--accent);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform .2s;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item[open] summary {
+      background: var(--accent-soft);
+    }
+
+    .faq-body {
+      padding: 0 22px 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* ── Links ── */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 169, 126, 0.35);
+      transition: border-color .2s;
+    }
+
+    a:hover { border-color: var(--accent); }
+
+    /* ── Footer ── */
     footer {
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #666;
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer .footer-app {
+      font-family: 'Instrument Sans', sans-serif;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 48px 20px 80px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Freya – Support</h1>
+<div class="wrapper">
 
-    <p>
-      Welcome to the support page for <strong>Freya</strong>, your AI-powered astrology app.
-      Here you’ll find help and contact information.
-    </p>
+  <header>
+    <p class="app-name">Freya</p>
+    <h1>Support</h1>
+    <div class="divider"></div>
+  </header>
 
+  <div class="intro">
+    Freya offers hyper-personalized life advice for Gen Z and Millennials. No fluff — just clear, actionable steps you can use today to improve your mindset and lifestyle.<br><br>
+    Here you'll find help and contact information.
+  </div>
+
+  <!-- Contact -->
+  <section>
     <h2>Contact Us</h2>
-    <p>
-      If you experience any issues, have feedback, or need assistance, please contact us at:
-    </p>
-    <p class="email">
-      📧 <a href="mailto:freya.app.help@gmail.com">freya.app.help@gmail.com</a>
-    </p>
+    <p>If you experience any issues, have feedback, or need assistance, please reach out to us directly:</p>
+    <div class="highlight-box">
+      <strong>E-mail:</strong> <a href="mailto:freya.app.help@gmail.com">freya.app.help@gmail.com</a>
+    </div>
+  </section>
 
-    <h2>Privacy Policy</h2>
-    <p>
-      You can view our Privacy Policy here:
-    </p>
-    <p>
-      🔗 <a href="https://iterokhin.github.io/freya-privacy-policy/" target="_blank" rel="noopener">
-        Privacy Policy
-      </a>
-    </p>
+  <!-- Legal docs -->
+  <section>
+    <h2>Legal Documents</h2>
 
-    <h2>Terms of Use</h2>
-    <p>
-      You can view our Terms of Use here:
-    </p>
-    <p>
-      🔗 <a href="https://iterokhin.github.io/freya-terms-and-conditions/" target="_blank" rel="noopener">
-        Terms of Use
-      </a>
-    </p>
+    <a class="link-card" href="https://iterokhin.github.io/freya-privacy-policy/" target="_blank" rel="noopener">
+      <span class="link-card-icon">🔗</span>
+      <div class="link-card-body">
+        <span class="link-card-title">Privacy Policy</span>
+        <span class="link-card-url">iterokhin.github.io/freya-privacy-policy</span>
+      </div>
+    </a>
 
+    <a class="link-card" href="https://iterokhin.github.io/freya-terms-and-conditions/" target="_blank" rel="noopener">
+      <span class="link-card-icon">🔗</span>
+      <div class="link-card-body">
+        <span class="link-card-title">Terms of Use</span>
+        <span class="link-card-url">iterokhin.github.io/freya-terms-and-conditions</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- FAQ -->
+  <section>
     <h2>FAQ</h2>
 
-    <p><strong>How do I use Freya?</strong></p>
-    <p>
-      Enter your birth details (date, time, and place) to generate your natal chart and
-      personalized interpretations. You can also add other people’s birth details to get
-      compatibility insights and match reports.
-    </p>
+    <details class="faq-item">
+      <summary>How do I use Freya?</summary>
+      <div class="faq-body">
+        Freya works in a few simple steps: tell us about your goals, then get personalized daily life advice with clear, actionable tips tailored to your focus (confidence, career, self-growth). Need a quick boost? Tap Dopamine Cards for instant high-vibe motivation and inspiration.
+      </div>
+    </details>
 
-    <p><strong>Can I suggest features?</strong></p>
-    <p>
-      Please send us any suggestions or comments you have.
-    </p>
+    <details class="faq-item">
+      <summary>Can I suggest features?</summary>
+      <div class="faq-body">
+        Absolutely — please send us any suggestions or comments you have. We'd love to hear from you at <a href="mailto:freya.app.help@gmail.com">freya.app.help@gmail.com</a>.
+      </div>
+    </details>
 
-    <p><strong>What happens if I find a bug?</strong></p>
-    <p>
-      Please contact us using the email above with a description of the problem and, if possible,
-      screenshots. We’ll do our best to fix it as quickly as possible.
-    </p>
+    <details class="faq-item">
+      <summary>What happens if I find a bug?</summary>
+      <div class="faq-body">
+        Please contact us using the email above with a description of the problem and, if possible, screenshots. We'll do our best to fix it as quickly as possible.
+      </div>
+    </details>
 
-    <p><strong>Does Freya sell user data?</strong></p>
-    <p>
-      Freya does not sell people’s data and will not sell anyone's data in the future.
-    </p>
+    <details class="faq-item">
+      <summary>Does Freya sell user data?</summary>
+      <div class="faq-body">
+        No. Freya does not sell people's data and will not sell anyone's data in the future.
+      </div>
+    </details>
+  </section>
 
-    <footer>
-      © 2026 Freya
-    </footer>
-  </div>
+  <footer>
+    <p class="footer-app">Freya</p>
+    <p>© 2026 Yegor Terokhin · All rights reserved</p>
+  </footer>
+
+</div>
 </body>
 </html>
